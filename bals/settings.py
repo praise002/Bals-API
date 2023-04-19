@@ -43,9 +43,14 @@ INSTALLED_APPS = [
 
     # third party apps
     'rest_framework',
+    'debug_toolbar',
     
     # apps
     'blog.apps.BlogConfig',
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 MIDDLEWARE = [
@@ -55,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -84,8 +90,12 @@ WSGI_APPLICATION = 'bals.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'balsBlog',
+        'HOST': 'localhost',
+        'USER': 'root',
+        # 'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'PASSWORD': 'Avwunudiogba2001',
     }
 }
 

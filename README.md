@@ -15,3 +15,13 @@
 - python --version
 - python manage.py shell
 - python -m django --version
+- pipenv install mysqlclient
+- mysql --version
+- mysql -u root -p
+- python manage.py migrate
+- python manage.py makemigrations
+- python manage.py createsuperuser
+- python manage.py runserver
+- pipenv install django-debug-toolbar
+
+<!-- TODO: run tests, taggit installation -->
