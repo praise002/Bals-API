@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
+from .permissions import IsAuthorOrReadOnly
 
 
 class PostList(generics.ListCreateAPIView):
@@ -9,6 +10,7 @@ class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthorOrReadOnly]
     queryset = Post.published.all()
     serializer_class = PostSerializer
     
