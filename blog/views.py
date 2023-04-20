@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
@@ -15,12 +16,13 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     
 class CommentList(generics.ListCreateAPIView):
+    permission_classes = [AllowAny]
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
-class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+class CommentDetail(generics.RetrieveDestroyAPIView):
+    # anonymous users can comment on a post
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
-    # TODO: connect a comment to a post
     

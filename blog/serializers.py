@@ -14,5 +14,5 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
         
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ['name', 'email', 'body']
+        fields = ['id', 'name', 'email', 'body', 'created']
         model = Comment

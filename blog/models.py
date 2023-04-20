@@ -26,6 +26,7 @@ class Post(BaseModel):
         PUBLISHED = 'PB', 'Published'
         
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)s
     title = models.CharField(max_length=250)
     body = models.TextField()
     slug = models.SlugField(max_length=250)

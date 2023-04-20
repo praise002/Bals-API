@@ -25,5 +25,4 @@
 - pipenv install django-debug-toolbar
 - pipenv install django-taggit
 
-<!-- TODO: run tests, use gitkraken, work on allowing users to comment on a post
-add more functionality to the admin panel, seo friendly using get_absolute_url -->
+<!-- TODO: run tests, use gitkraken, seo friendly using get_absolute_url -->
