@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -30,7 +31,7 @@ class Post(BaseModel):
     slug = models.SlugField(max_length=250)
     publish = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
-    # tag
+    tags = TaggableManager()
     
     objects = models.Manager()  #the default manager
     published = PublishedManager()  #our custom manager

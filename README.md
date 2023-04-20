@@ -23,5 +23,7 @@
 - python manage.py createsuperuser
 - python manage.py runserver
 - pipenv install django-debug-toolbar
+- pipenv install django-taggit
 
-<!-- TODO: run tests, taggit installation -->
+<!-- TODO: run tests, use gitkraken, work on allowing users to comment on a post
+add more functionality to the admin panel, seo friendly using get_absolute_url -->
