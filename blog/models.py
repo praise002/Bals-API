@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from taggit.managers import TaggableManager
+import uuid
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -24,12 +25,13 @@ class Post(BaseModel):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
-        
+    
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)s
     title = models.CharField(max_length=250)
     body = models.TextField()
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
     publish = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
     tags = TaggableManager()

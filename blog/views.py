@@ -14,6 +14,8 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthorOrReadOnly]
     queryset = Post.published.all()
     serializer_class = PostSerializer
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'
     
 class CommentList(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
@@ -25,4 +27,5 @@ class CommentDetail(generics.RetrieveDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
+    # TODO: build it to be seo-friendly, slug and uuid, using canonical url in APIView
     
