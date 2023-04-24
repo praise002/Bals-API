@@ -10,6 +10,7 @@ djangorestframework = "*"
 mysqlclient = "*"
 django-debug-toolbar = "*"
 django-taggit = "*"
+sendgrid = "*"
 
 [dev-packages]
 

@@ -26,6 +26,7 @@ class Post(BaseModel):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
     
+    # change it to this before deployment
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)s

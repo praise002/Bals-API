@@ -24,5 +24,6 @@
 - python manage.py runserver
 - pipenv install django-debug-toolbar
 - pipenv install django-taggit
+- pipenv install djangorestframework sendgrid
 
 <!-- TODO: run tests, use gitkraken, seo friendly using get_absolute_url -->
