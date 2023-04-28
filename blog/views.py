@@ -6,6 +6,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
@@ -44,7 +45,12 @@ class PostSearchListAPIView(generics.ListAPIView):
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data}, status=status.HTTP_200_OK)
     
-
+class LatestPostsView(APIView):
+    def get(self, request):
+        latest_posts = Post.published.order_by('-publish')[:10]
+        serializer = PostSerializer(latest_posts, many=True)  # serializing multiple objs at once
+        return Response(serializer.data)
+    
 class CommentList(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
     queryset = Comment.objects.all()
