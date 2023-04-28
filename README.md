@@ -25,5 +25,17 @@
 - pipenv install django-debug-toolbar
 - pipenv install django-taggit
 - pipenv install djangorestframework sendgrid
+- pipenv install django-markdownx
 
-<!-- TODO: run tests, use gitkraken, seo friendly using get_absolute_url -->
+## To use the search query:
+* http://127.0.0.1:8000/blog/?q=C%2B%2B
+* http://127.0.0.1:8000/blog/?q=django
+* http://127.0.0.1:8000/blog/?q=django+rest
+
+### To use the sitemap:
+* http://127.0.0.1:8000/sitemap.xml
+
+#### To use feeds:
+* http://127.0.0.1:8000/feed/
+
+<!-- TODO: run tests, use gitkraken, use uuid-->

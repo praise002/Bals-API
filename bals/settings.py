@@ -40,16 +40,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     # third party apps
     'rest_framework',
     'debug_toolbar',
     'taggit',
+    'markdownx',
     
     # apps
     'blog.apps.BlogConfig',
     'newsletter.apps.NewsletterConfig',
 ]
+
+SITE_ID = 1
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -150,3 +155,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+# Twilio sendgrid API key
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# Setting default email for sending email through sendgrid
+DEFAULT_FROM_EMAIL = 'balsuniversity@gmail.com'

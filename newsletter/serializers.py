@@ -8,4 +8,3 @@ class SubscriberSerializer(serializers.ModelSerializer):
         fields = ['email']
         
 
-

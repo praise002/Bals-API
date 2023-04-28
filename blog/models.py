@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from taggit.managers import TaggableManager
+from markdownx.models import MarkdownxField
 import uuid
 
 class PublishedManager(models.Manager):
@@ -31,7 +32,7 @@ class Post(BaseModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)s
     title = models.CharField(max_length=250)
-    body = models.TextField()
+    body = MarkdownxField()
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     publish = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)

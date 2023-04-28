@@ -16,10 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import markdownx.urls
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap
+from blog.feeds import LatestPostsFeed
+
+sitemaps = {
+    'posts': PostSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('blog/', include('blog.urls', namespace='blog')),
+    path('newsletter/', include('newsletter.urls', namespace='newsletter')),
     path('api-auth/', include('rest_framework.urls')),
+    path('markdownx/', include('markdownx.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('feed/', LatestPostsFeed(), name='post_feed'),
 ]
