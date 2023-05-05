@@ -5,12 +5,13 @@ CommentDetail, PostRecommendationsView, PostSearchListAPIView, LatestPostsView
 app_name = 'blog'
 
 urlpatterns = [
-    path('', PostSearchListAPIView.as_view(), name='post_search'),
-    path('posts/', PostList.as_view(), name='post_list'),
-    path('posts/<int:pk>/<slug:slug>/', PostDetail.as_view(), name='post_detail'),  
-    path('posts/<int:post_id>/<slug:slug>/recommendations/', PostRecommendationsView.as_view(), name='post_recommendations'),
-    path('latest-posts/', LatestPostsView.as_view(), name='latest_posts'),
+    path('', PostList.as_view(), name='post_list'),
+    path('search/', PostSearchListAPIView.as_view(), name='post_search'),
     path('comments/', CommentList.as_view(), name='comment_list'),
     path('comments/<int:pk>/', CommentDetail.as_view(), name='comment_detail'),
+    path('latest-posts/', LatestPostsView.as_view(), name='latest_posts'),
+    path('<slug:slug>/', PostDetail.as_view(), name='post_detail'),  
+    path('<slug:slug>/recommendations/', PostRecommendationsView.as_view(), name='post_recommendations'),
 ]
+
 

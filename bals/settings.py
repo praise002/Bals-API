@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'taggit',
     'markdownx',
+    'django_countries',
     
     # apps
     'blog.apps.BlogConfig',
@@ -160,3 +161,5 @@ REST_FRAMEWORK = {
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 # Setting default email for sending email through sendgrid
 DEFAULT_FROM_EMAIL = 'balsuniversity@gmail.com'
+
+

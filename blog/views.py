@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Count, Q, Value, CharField
 from django.db.models.functions import Concat
 from rest_framework import status
@@ -22,7 +22,6 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     lookup_field = 'slug'
     lookup_url_kwarg = 'slug'
-    # slug_field = 'slug'
     
 class PostSearchListAPIView(generics.ListAPIView):
     serializer_class = PostSerializer
@@ -61,13 +60,12 @@ class CommentDetail(generics.RetrieveDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
-
 class PostRecommendationsView(generics.ListAPIView):
     serializer_class = PostSerializer
     
     def get_queryset(self):
-        post_id = self.kwargs['post_id']
-        post = Post.objects.get(id=post_id)
+        slug = self.kwargs['slug']
+        post = get_object_or_404(Post, slug=slug)
         
         # get all tags for current post
         tags = post.tags.all()
@@ -76,11 +74,12 @@ class PostRecommendationsView(generics.ListAPIView):
         posts = Post.objects.filter(tags__in=tags).distinct()
         
         # exclude current post from the list of recommended posts
-        posts = posts.exclude(id=post_id)
+        posts = posts.exclude(slug=slug)
         
         # order by number of tags shared with current post, then by recency
-        posts = posts.annotate(shared_tags=Count('tags', filter=Q(tags__in=tags))).order_by('shared_tags', 'created')
+        posts = posts.annotate(shared_tags=Count('tags', filter=Q(tags__in=tags))).order_by('-shared_tags', '-created')
         
         # limit the number of recommended posts
         limit = self.request.query_params.get('limit', 10)
         return posts[:int(limit)]
+

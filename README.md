@@ -38,4 +38,4 @@
 #### To use feeds:
 * http://127.0.0.1:8000/feed/
 
-<!-- TODO: run tests, use gitkraken, use uuid-->
+<!-- TODO: run tests, use gitkraken, use uuid, implement ElasticSearch -->
